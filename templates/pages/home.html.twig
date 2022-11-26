@@ -1,0 +1,43 @@
+{# ===== Home page that displays the hikes ===== #}
+
+{% extends "base.html.twig" %}
+
+{% block title %}AssocRando - Acceuil{% endblock title %}
+
+{% block body %}
+
+    {# Inserting the navbar #}
+    {% include "pages/navbar.html.twig" %}
+
+    {# Title #}
+    <h1 class="display-5 text-center mt-5">AssocRando</h1>
+
+    {# Display of hikes #}
+    <div class="container">
+        <div class="row flex">
+
+            {% for hike in hikes %}
+
+                <div class="col-4 mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <H5 class="card-title">
+                                <a href="#">
+                                    {{ hike.nameHinking }}
+                                </a>
+                            </H5>
+                            <p class="card-text">
+                                Prix : {{ hike.prix }}
+                            </p>
+                            <div class="card-text">
+                                Places max : {{ hike.maxPlaces }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock body %}
