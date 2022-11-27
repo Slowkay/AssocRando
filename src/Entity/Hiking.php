@@ -19,7 +19,10 @@ class Hiking
     private ?int $id = null;
 
     #[ORM\Column(length: 64)]
-    private ?string $nameHinking = null;
+    private ?string $nameHiking = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $description = null;
 
     #[ORM\Column]
     private ?int $prix = null;
@@ -34,14 +37,26 @@ class Hiking
         return $this->id;
     }
 
-    public function getNameHinking(): ?string
+    public function getNameHiking(): ?string
     {
-        return $this->nameHinking;
+        return $this->nameHiking;
     }
 
-    public function setNameHinking(string $nameHinking): self
+    public function setNameHiking(string $nameHiking): self
     {
-        $this->nameHinking = $nameHinking;
+        $this->nameHiking = $nameHiking;
+
+        return $this;
+    }
+
+    public function getdescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setdescription(string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

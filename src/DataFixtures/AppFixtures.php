@@ -28,16 +28,16 @@ class AppFixtures extends Fixture
          * Creation of hikes
          */
         for($i=0; $i<8; $i++)
-        {
-
-            
+        {        
             $hike = new Hiking();
 
-            $hike->setNameHinking($nameHike[$i]);
+            $hike->setNameHiking($nameHike[$i]);
             
             $hike->setPrix($faker->randomNumber(3, true));
 
             $hike->setMaxPlaces($faker->numberBetween(6, 20));
+            
+            $hike->setdescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec viverra quis ligula ut egestas.");
 
             $manager->persist($hike);
         }

@@ -1,0 +1,27 @@
+{# ===== Page which create the show of hikes ===== #}
+
+<div class="container">
+    <div class="row flex">
+
+        {% for hike in hikes %}
+            <div class="col-4 mt-5">
+                <div class="card bg-light">
+                    <H5 class="card-header">
+                        <a class="text-decoration-none text-dark" href="{{ path('hikeInformation', {id: hike.id})}}">
+                            {{ hike.nameHiking }}
+                        </a>
+                    </H5>
+                    <div class="card-body">
+                        <p class="card-text">
+                            Prix : {{ hike.prix }} €
+                        </p>
+                        <p class="card-text text-muted">
+                            {{ hike.maxPlaces }} personnes max
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+</div>
