@@ -19,15 +19,28 @@
                 <p  class="fw-light">
                     Places maximum : {{ hike.maxPlaces }}
                 </p>
+                
                 <p  class="fw-light">
-                    Places restantes : A COMPLETER
+                    Places restantes : A COMPLETER                    
                 </p>
-                <select class="form-select" name="hike" id="hike">
-                    <option value="session1">Session 1</option>
-                    <option value="session2">Session 2</option>
-                    <option value="session3">Session 3</option>
-                    <option value="session4">Session 4</option>
-                </select>
+                
+                {% if session == null %}
+
+                    <p  class="fw-light">
+                        Aucune Session disponible.                    
+                    </p>
+
+                {% else %}
+
+                    <select class="form-select" name="hike" id="hike">
+                        <option value="choix">Choisir une Session</option>
+                        {% for uneS in session %}
+                            <option value="session">{{uneS.date|date('d-m-Y')}}</option>
+                        {% endfor %}
+                    </select>
+                        
+                {% endif %}
+        
                 <a href="#" class="btn btn-primary mt-3">Réserver une place</a>
             </div>
         </div>      

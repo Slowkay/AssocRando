@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\HikingRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -29,6 +31,14 @@ class Hiking
 
     #[ORM\Column]
     private ?int $maxPlaces = null;
+
+    #[ORM\OneToMany(mappedBy: 'hike', targetEntity: Session::class)]
+    protected Collection $session;
+
+    public function __construct()
+    {
+        $this->session = new ArrayCollection();
+    }
 
     // ===== Accessors =====
 
@@ -81,6 +91,36 @@ class Hiking
     public function setMaxPlaces(int $maxPlaces): self
     {
         $this->maxPlaces = $maxPlaces;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Session>
+     */
+    public function getSession(): Collection
+    {
+        return $this->session;
+    }
+
+    public function addSession(Session $session): self
+    {
+        if (!$this->session->contains($session)) {
+            $this->session->add($session);
+            $session->setHike($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSession(Session $session): self
+    {
+        if ($this->session->removeElement($session)) {
+            // set the owning side to null (unless already changed)
+            if ($session->getHike() === $this) {
+                $session->setHike(null);
+            }
+        }
 
         return $this;
     }
