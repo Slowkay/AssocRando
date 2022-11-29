@@ -10,15 +10,16 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Validator\Constraints as Assert;
 
-class RegisterType extends AbstractType
+class EditPasswordType extends AbstractType
 {
 
 
     // ===== Functions =====
     
     /**
-     * Creation of the registration form
+     * Creating the EditPassword form
      *
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -27,19 +28,11 @@ class RegisterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class, [
-                'label' => 'Email (login)',
-                'attr' => [
-                    'placeholder' => 'email (votre identifiant)'
-                ]
-            ])
-            ->add('nom')
-            ->add('prenom')
             ->add('password', PasswordType::class, [
                 'label' => 'Mot de passe',
                 'attr' => [
                     'placeholder' => 'Mot de passe'
-                ],
+                ]
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
@@ -48,22 +41,14 @@ class RegisterType extends AbstractType
                 'first_options'  => ['label' => 'Mot de passe', 'attr' => ['placeholder' => 'Votre mot de passe']],
                 'second_options' => ['label' => 'Confirmez votre mot de passe'],
             ])
+            ->add('newPassword', PasswordType::class, [
+                'attr' => ['class' => 'form-control'],
+                'label' => 'Nouveau mot de passe',
+                'label_attr' => ['class' => 'form-label mt-4']
+            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Envoyer'
             ]);
-    }
-
-
-    /**
-     * Allows you to configure options
-     *
-     * @param OptionsResolver $resolver
-     * @return void
-     */
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults([
-            'data_class' => User::class,
-        ]);
+   
     }
 }

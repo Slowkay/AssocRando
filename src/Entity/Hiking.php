@@ -13,6 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: HikingRepository::class)]
 class Hiking
 {
+
+
     // ===== Attributes =====
 
     #[ORM\Id]
@@ -39,6 +41,7 @@ class Hiking
     {
         $this->session = new ArrayCollection();
     }
+
 
     // ===== Accessors =====
 

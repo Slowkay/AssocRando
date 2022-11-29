@@ -10,6 +10,8 @@ use DateTime;
 #[ORM\Entity(repositoryClass: SessionRepository::class)]
 class Session
 {
+
+
     // ===== Attributes =====
 
     #[ORM\Id]
@@ -23,6 +25,7 @@ class Session
     #[ORM\ManyToOne(inversedBy: 'session')]
     #[ORM\JoinColumn(nullable: false)]
     protected ?Hiking $hike = null;
+    
 
     // ===== Accessors =====
 

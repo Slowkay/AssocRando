@@ -9,8 +9,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
+    // ===== Functions =====
+
     /**
-     * Affichage Page Acceuil
+     * Return the home page with the hikes
+     *
+     * @param HikingRepository $hikingRepository
+     * @return Response
      */
     #[Route('/', name: 'home')]
     public function index(HikingRepository $hikingRepository): Response

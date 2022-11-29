@@ -13,13 +13,37 @@ use Faker;
 class AppFixtures extends Fixture
 {
 
+
+    // ===== Attributes =====
+
+    /**
+     * 
+     * @var UserPasswordHasherInterface $encoder
+     */
     private $encoder;
+
     
+    // ===== Constructor =====
+
+    /**
+     * Constructor of the RegisterController
+     *
+     * @param UserPasswordHasherInterface $encoder
+     */
     public function __construct(UserPasswordHasherInterface $encoder)
     {
         $this->encoder = $encoder;
     }
 
+
+    // ===== Functions =====
+
+    /**
+     * Record insertions in the database
+     *
+     * @param ObjectManager $manager
+     * @return void
+     */
     public function load(ObjectManager $manager): void
     {
         $faker = Faker\Factory::create('fr_FR');

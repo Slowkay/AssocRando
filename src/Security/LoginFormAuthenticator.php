@@ -19,11 +19,20 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
+
+    // ===== Attributes =====
+
     public const LOGIN_ROUTE = 'app_login';
+
+
+    // ===== Constructor =====
 
     public function __construct(private UrlGeneratorInterface $urlGenerator)
     {
     }
+
+    // ===== Functions =====
+
 
     public function authenticate(Request $request): Passport
     {
@@ -40,6 +49,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         );
     }
 
+
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
@@ -47,9 +57,10 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         }
 
         // For example:
-        // return new RedirectResponse($this->urlGenerator->generate('some_route'));
+        return new RedirectResponse($this->urlGenerator->generate('user_account'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
+    
 
     protected function getLoginUrl(Request $request): string
     {

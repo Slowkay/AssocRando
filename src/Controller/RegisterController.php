@@ -14,18 +14,29 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class RegisterController extends AbstractController
 {
+    // ===== Constructor =====
+
     /**
-     * Constructor
+     * Constructor of the RegisterController
+     *
+     * @param EntityManagerInterface $em
      */
     public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
     }
+    
+
+    // ===== Functions =====
 
     /**
-     * Functions
+     * Return the registration form and inserts a user in the User table
+     *
+     * @param Request $request
+     * @param UserPasswordHasherInterface $hashPassword
+     * @return Response
      */
-    #[Route('/register', name: 'register')]
+    #[Route('/register', name: 'app_register')]
     public function index(Request $request, UserPasswordHasherInterface $hashPassword): Response
     {
         // instantiates an object for the new user
@@ -52,13 +63,13 @@ class RegisterController extends AbstractController
             $hashPassword = $hashPassword->hashPassword($user, $user->getPassword());
             $user->setPassword($hashPassword);
 
-            // uses the dd() dump and die function
-            // dd($user);
-
             // registers the user in the database
             $this->em->persist($user);
             $this->em->flush();
+            return $this->redirectToRoute('home');
         }        
         return $this->render('pages/register/register.html.twig', $params);
     }
+
+    
 }

@@ -10,6 +10,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+
+
     // ===== Attributes =====
     
     #[ORM\Id]
@@ -34,6 +36,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+    
 
     // ===== Accessors =====
 

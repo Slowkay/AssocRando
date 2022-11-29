@@ -17,12 +17,15 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class SessionRepository extends ServiceEntityRepository
 {
+
+
     // ===== Constructor =====
 
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Session::class);
     }
+
 
     // ===== Functions =====
 
@@ -34,6 +37,7 @@ class SessionRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    
 
     public function remove(Session $entity, bool $flush = false): void
     {

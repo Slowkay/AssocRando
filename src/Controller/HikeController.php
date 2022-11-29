@@ -10,8 +10,15 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HikeController extends AbstractController
 {
+    // ===== Functions =====
+
     /**
-     * Functions
+     * Return the hikes and their sessions
+     *
+     * @param [type] $idHike
+     * @param SessionRepository $sessionRepository
+     * @param HikingRepository $hikingRepository
+     * @return Response
      */
     #[Route('/Randonnée/{idHike}', name: 'hikeInformation')]
     public function hikeById($idHike, SessionRepository $sessionRepository, HikingRepository $hikingRepository): Response
@@ -24,14 +31,4 @@ class HikeController extends AbstractController
             'session' => $session
         ]);
     }
-
-    // #[Route('/Randonnée/{idSession}', name: 'hikeInformationSession')]
-    // public function hikeByIdSession($idSession, SessionRepository $sessionRepository): Response
-    // {
-    //     $session = $sessionRepository->find($idSession);
-    //     return $this->render('pages/hikes/hikeInformation.html.twig', [
-    //         'session' => $session
-    //     ]);
-    // }
-
 }

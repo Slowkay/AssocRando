@@ -16,12 +16,15 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class HikingRepository extends ServiceEntityRepository
 {
+
+
     // ===== Constructor =====
     
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Hiking::class);
     }
+
 
     // ===== Functions =====
 
@@ -34,6 +37,7 @@ class HikingRepository extends ServiceEntityRepository
         }
     }
 
+    
     public function remove(Hiking $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
